@@ -2,8 +2,8 @@
 # mapbox-maps-swiftui-demo
 
 
-This a demo MapBox/SiwftUI app to add location marker to mapview also selected locations are displayed in a SwiftUI.
-This is a answer to this [Stackoverflow Question](https://stackoverflow.com/questions/63732974/dealing-with-multiple-annotations-at-the-same-address-in-an-mglmapview-using-swi?noredirect=1#comment112870200_63732974)
+This a demo MapBox/SwiftUI app to add location marker to mapview. Also: selected locations are displayed in a SwiftUI.
+This is an answer to this [Stackoverflow Question](https://stackoverflow.com/questions/63732974/dealing-with-multiple-annotations-at-the-same-address-in-an-mglmapview-using-swi?noredirect=1#comment112870200_63732974)
 
 Credits for the implementation of EnvironmentObject with UIViewRepresentable:
 [Combine & UIViewRepresentable](https://stackoverflow.com/questions/58442827/how-can-i-use-combine-to-track-uitextfield-changes-in-a-uiviewrepresentable-clas
