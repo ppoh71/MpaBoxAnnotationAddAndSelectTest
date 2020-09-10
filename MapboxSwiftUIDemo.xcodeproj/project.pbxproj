@@ -17,6 +17,7 @@
 		1F25CB3B232992D400B002A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25CB3A232992D400B002A0 /* MapView.swift */; };
 		80839E26B5108BB837D3701C /* Pods_MapboxSwiftUIDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF147917F3C173673DDA6F38 /* Pods_MapboxSwiftUIDemoTests.framework */; };
 		8322D824EE3B7E2B827DD91A /* Pods_MapboxSwiftUIDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5860E11388C7CB50E7942DF0 /* Pods_MapboxSwiftUIDemo.framework */; };
+		A90CC446250A7A7B0056196B /* AnnotationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CC445250A7A7B0056196B /* AnnotationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		2A203354BBB295152BD3C224 /* Pods-MapboxSwiftUIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxSwiftUIDemo.release.xcconfig"; path = "Target Support Files/Pods-MapboxSwiftUIDemo/Pods-MapboxSwiftUIDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5860E11388C7CB50E7942DF0 /* Pods_MapboxSwiftUIDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapboxSwiftUIDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3F87FC14B913129FFBAFDB /* Pods-MapboxSwiftUIDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxSwiftUIDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-MapboxSwiftUIDemoTests/Pods-MapboxSwiftUIDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A90CC445250A7A7B0056196B /* AnnotationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationModel.swift; sourceTree = "<group>"; };
 		C7D59B06F314F394133D47B2 /* Pods-MapboxSwiftUIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxSwiftUIDemo.debug.xcconfig"; path = "Target Support Files/Pods-MapboxSwiftUIDemo/Pods-MapboxSwiftUIDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		EF147917F3C173673DDA6F38 /* Pods_MapboxSwiftUIDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapboxSwiftUIDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				1F25CB1823298FF700B002A0 /* AppDelegate.swift */,
+				A90CC445250A7A7B0056196B /* AnnotationModel.swift */,
 				1F25CB1A23298FF700B002A0 /* SceneDelegate.swift */,
 				1F25CB1C23298FF700B002A0 /* ContentView.swift */,
 				1F25CB3A232992D400B002A0 /* MapView.swift */,
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90CC446250A7A7B0056196B /* AnnotationModel.swift in Sources */,
 				1F25CB1923298FF700B002A0 /* AppDelegate.swift in Sources */,
 				1F25CB1B23298FF700B002A0 /* SceneDelegate.swift in Sources */,
 				1F25CB1D23298FF700B002A0 /* ContentView.swift in Sources */,
