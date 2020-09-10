@@ -1,6 +1,0 @@
-framework module Pods_MapboxSwiftUIDemo {
-  umbrella header "Pods-MapboxSwiftUIDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}
