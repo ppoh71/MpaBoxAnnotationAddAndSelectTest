@@ -97,23 +97,22 @@ struct MapView: UIViewRepresentable {
     }
     
     func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
-      guard let annotationCollection = mapView.annotations else { return }
       
-      /// cycle throu the annotations from the binding
-      /// @Binding var annotations: [MGLPointAnnotation]
-      for _annotation in annotationCollection {
-        print("annotation", annotation)
-        
-        if annotation.coordinate.latitude == _annotation.coordinate.latitude {
-          /// this is the same annotation
-          print("*** Selected annoation")
-          if let hastTitle = annotation.title {
-            annotationModel.selectedAnnotaion = hastTitle ?? "no string in title"
-          }
-        } else {
-          print("--- Not the selected annoation")
-        }
-      }
+      /// Create a customLoaction and assign it the model
+      /// The values are needed to loop though the same annotations
+      let customAnnotation = AnnotationLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude, title: annotation.title ?? "No Tilte")
+      
+      /// assignselected annotion  @EnvironmentObject
+      /// so it can be shown in the custom callout
+      annotationModel.selectedAnnotation = customAnnotation
+      
+      /// show custom call out
+      annotationModel.showCustomCallout = true
+      
+      /// count locations at same spot
+      /// also pushes same locations into separte array to loop through
+      annotationModel.getAllLocationsFormSameSpot()
+      
       mapView.setCenter(annotation.coordinate, zoomLevel: 17,  animated: true)
     }
   }

@@ -4,38 +4,107 @@ import Mapbox
 struct ContentView: View {
   @EnvironmentObject var annotationModel: AnnotationModel
   
-  @State var annotations: [MGLPointAnnotation] = [
-    MGLPointAnnotation(title: "Mapbox", coordinate: .init(latitude: 37.791434, longitude: -122.396267))
-  ]
-  
-  @State private var selectedAnnotaion: String = ""
+  @State var annotations: [MGLPointAnnotation] = [MGLPointAnnotation]()
+  @State private var showAnnotation: Bool = false
+  @State private var nextAnnotation: Int = 0
   
   var body: some View {
-    VStack{
-      MapView(annotations: $annotations).centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324)).zoomLevel(16).environmentObject(annotationModel)
-      
+    GeometryReader{ g in
       VStack{
-        Button(action: {
-          self.addNextAnnotation(address: "Location: \(Int.random(in: 1..<1000))")
-        }) {
-          Text("Add Location")
-        }.frame(width: 200, height: 50)
+        ZStack(alignment: .top){
+          MapView(annotations: self.$annotations).centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324)).zoomLevel(16).environmentObject(self.annotationModel)
+          
+          if self.annotationModel.showCustomCallout {
+            VStack{
+              
+              HStack{
+                Spacer()
+                Button(action: {
+                  self.annotationModel.showCustomCallout = false
+                }) {
+                  Image(systemName: "xmark")
+                    .foregroundColor(Color.black)
+                    .font(Font.system(size: 12, weight: .regular))
+                }.offset(x: -5, y: 5)
+                
+              }
+              
+              HStack{
+                Text("Custom Callout")
+                  .font(Font.system(size: 12, weight: .regular))
+                  .foregroundColor(Color.black)
+              }
+              
+              Spacer()
+              
+              Text("Selected: \(self.annotationModel.selectedAnnotation.title ?? "No Tiltle")")
+                .font(Font.system(size: 16, weight: .regular))
+                .foregroundColor(Color.black)
+                
+              Text("Count same Spot: \(self.annotationModel.locationsAtSameSpot.count) ")
+                .font(Font.system(size: 16, weight: .regular))
+                .foregroundColor(Color.black)
+              
+               Spacer()
+              
+              Button(action: {
+                let gotNextSpot = self.annotationModel.getNextAnnotation(index: self.nextAnnotation)
+                if gotNextSpot {
+                  self.nextAnnotation += 1
+                } else {
+                  self.nextAnnotation = -1 // a bit dirty...
+                }
+                
+              }) {
+                Text("Get Next Spot >")
+              }
+              
+            }.background(Color.white)
+              .frame(width: 200, height: 250, alignment: .center)
+              .cornerRadius(10)
+              .offset(x: 0, y: 0)
+          }
+        }
         
-        Text("Selected: \(annotationModel.selectedAnnotaion)")
-        
-        Spacer().frame(height: 50)
+        VStack{
+          HStack{
+          Button(action: {
+            self.addNextAnnotation(address: "Spot \(Int.random(in: 1..<1000))", isSpotA: true)
+          }) {
+            Text("Add to Spot A")
+          }.frame(width: 200, height: 50)
+          
+         Button(action: {
+          self.addNextAnnotation(address: "Spot \(Int.random(in: 1..<1000))", isSpotA: false)
+         }) {
+           Text("Add to Spot B")
+         }.frame(width: 200, height: 50)
+        }
+           Spacer().frame(height: 50)
+        }
       }
     }
   }
   
   /// add a random annotion to the map
   /// - Parameter address: address description
-  func addNextAnnotation(address: String) {
-    let randomLatitude = Double.random(in: 37.7912434..<37.7918434)
-    let randomLongitude = Double.random(in: 122.396267..<122.396867) * -1
-    let newAnnotation = MGLPointAnnotation(title: address, coordinate: .init(latitude: randomLatitude, longitude: randomLongitude))
+  func addNextAnnotation(address: String, isSpotA: Bool) {
+    print("add location")
+    var newAnnotation = MGLPointAnnotation(title: address, coordinate: .init(latitude:  37.7912434, longitude: -122.396267))
     
+    if !isSpotA {
+      newAnnotation = MGLPointAnnotation(title: address, coordinate: .init(latitude:  37.7914434, longitude: -122.396467))
+    }
+    
+    
+    /// append to @State var which is used in teh mapview
     annotations.append(newAnnotation)
+    
+    /// also add location to model for calculations
+    /// would need refactoring since this is redundant
+    /// i leave it like that since it is more a prove of concept
+    annotationModel.addLocationInModel(annotation: newAnnotation)
+  
   }
 }
 
